@@ -1,0 +1,64 @@
+<p>admin-page works!</p>
+
+
+<button (click)="logout()" >Logout</button>
+
+<div class="container">
+    <h2>User Management</h2>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.id }} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.name }} </mat-cell>
+      </ng-container>
+  
+      <!-- Surname Column -->
+      <ng-container matColumnDef="surname">
+        <mat-header-cell *matHeaderCellDef> Surname </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.surname }} </mat-cell>
+      </ng-container>
+  
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.email }} </mat-cell>
+      </ng-container>
+
+      <!-- Atesi Column -->
+<ng-container matColumnDef="atesi">
+    <mat-header-cell *matHeaderCellDef> Atesi </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{ user.atesi }} </mat-cell>
+  </ng-container>
+  
+  <!-- Phone Number Column -->
+  <ng-container matColumnDef="phonenumber">
+    <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{ user.phonenumber }} </mat-cell>
+  </ng-container>
+  
+    <!-- Phone Number Column -->
+    <ng-container matColumnDef="dateOfBirth">
+        <mat-header-cell *matHeaderCellDef>Birthday </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ user.dateOfBirth }} </mat-cell>
+      </ng-container>
+  
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <button mat-button color="primary" (click)="editUser(user)">Edit</button>
+          <button mat-button color="warn" (click)="deleteUser(user.id)">Delete</button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+  
