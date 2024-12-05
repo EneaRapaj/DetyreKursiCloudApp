@@ -6,7 +6,7 @@ export interface Users {
     phonenumber: string;
     dateOfBirth: string;
     email: string;
-    password: string;
+    password?: string;
     role: string; // Added field for role
       
       

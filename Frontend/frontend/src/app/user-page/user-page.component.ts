@@ -1,49 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute  } from '@angular/router';
-import { FormGroup, FormBuilder,  Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Users } from '../interfaces/users';
 import { RegisterUserService } from '../service/register-user.service';
-import { AuthServiceService } from '../service/auth-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-
-
-
-
-
-
 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
-export class UserPageComponent implements OnInit  {
-
+export class UserPageComponent implements OnInit {
   userForm: FormGroup;
   userId: number;
   userData: Users | null = null;
-
-  showRoleField = false; // Set to true if you want to display the field
 
   constructor(
     private fb: FormBuilder,
     private usersService: RegisterUserService,
     private route: ActivatedRoute,
     private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.userId = parseInt(this.route.snapshot.paramMap.get('id') || '0', 10);
-    console.log('Resolved User ID:', this.userId);
     this.userForm = this.fb.group({
-      name: ['', Validators.required],
-      atesi: ['', Validators.required],
-      surname: ['', Validators.required],
+      name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{1,20}$/)]],
+      atesi: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{1,20}$/)]],
+      surname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{1,20}$/)]],
       phonenumber: ['', [Validators.required, Validators.pattern(/^\+355\d{9}$/)]],
-      dateOfBirth: ['', Validators.required],
+      dateOfBirth: ['', Validators.required], // Kontrollohet si datë nga Angular Material ose input-type="date"
       email: ['', [Validators.required, Validators.email]],
-      password: [''], // Optional, add conditional validators in submit logic
-      role: ['ROLE_USER'],
+      password: ['', [Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
+      role: ['ROLE_USER']
     });
+    
   }
 
   ngOnInit(): void {
@@ -53,41 +43,32 @@ export class UserPageComponent implements OnInit  {
   getUserData() {
     this.usersService.getUserById(this.userId).subscribe({
       next: (data) => {
-        console.log('Fetched User Data:', data); // Debugging log
         this.userData = data;
         if (this.userData) {
-          this.userForm.patchValue(this.userData);
+          this.userForm.patchValue({ ...this.userData, password: '' });
         }
       },
       error: (err) => {
-        console.error('Error fetching user data:', err);
+        this.snackBar.open('Error fetching user data.', 'Close', { duration: 3000 });
       },
     });
   }
-  
-  
-  
 
   updateProfile() {
     if (this.userForm.valid) {
-      const updatedUser = this.userForm.value as Users;
-
+      const updatedUser: Users = { ...this.userForm.value };
+      if (!updatedUser.password) {
+        delete updatedUser.password;
+      }
       this.usersService.updateUser(this.userId, updatedUser).subscribe({
-        next: () => {
-          alert('Profile updated successfully');
-        },
-        error: () => {
-          alert('Error updating profile. Please try again.');
-        },
+        next: () => this.snackBar.open('Profile updated successfully', 'Close', { duration: 3000 }),
+        error: () => this.snackBar.open('Error updating profile.', 'Close', { duration: 3000 }),
       });
     }
   }
 
-  logout(): void {
-    // Clear authentication data (if any) from local storage or session storage
-    localStorage.removeItem('authToken');  // or sessionStorage.removeItem('authToken')
-
-    // Redirect to the login page, and replace the current URL in the history stack
+  logout() {
+    localStorage.removeItem('authToken');
     this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 }

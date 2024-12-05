@@ -25,10 +25,8 @@ public class UserProfileController {
     @PutMapping("/{id}")
     public ResponseEntity<String> updateUserProfile(@PathVariable("id") Long id, @RequestBody UserProfile userProfile) {
 
-
-
         // Validate fields using UserValidator
-        if(!UserValidator.validateFirstName(userProfile.getName())) {
+        if (!UserValidator.validateFirstName(userProfile.getName())) {
             return ResponseEntity.badRequest().body("Invalid first name.");
         }
         if (!UserValidator.validateLastName(userProfile.getSurname())) {
@@ -44,17 +42,23 @@ public class UserProfileController {
             return ResponseEntity.badRequest().body("Invalid email format.");
         }
 
-        if (!UserValidator.validatePassword(userProfile.getPassword())) {
-            return ResponseEntity.badRequest().body("Invalid password format.");
+        // Only validate password if it is provided
+        if (userProfile.getPassword() != null && !userProfile.getPassword().isEmpty()) {
+            if (!UserValidator.validatePassword(userProfile.getPassword())) {
+                return ResponseEntity.badRequest().body("Invalid password format.");
+            }
+        } else {
+            userProfile.setPassword(null);  // Let the service handle this condition
         }
 
-
-
-
         UserProfile updatedProfile = userProfileService.updateUserProfile(id, userProfile);
-        return ResponseEntity.ok("UPDATE SUCCESS");
-
+        if (updatedProfile != null) {
+            return ResponseEntity.ok("UPDATE SUCCESS");
+        } else {
+            return ResponseEntity.badRequest().body("User not found.");
+        }
     }
+
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")

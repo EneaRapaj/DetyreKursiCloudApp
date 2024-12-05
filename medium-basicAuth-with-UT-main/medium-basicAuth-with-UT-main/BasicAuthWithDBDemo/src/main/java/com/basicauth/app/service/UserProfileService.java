@@ -26,20 +26,24 @@ public class UserProfileService {
     public UserProfile updateUserProfile(Long id, UserProfile userProfile) {
         UserProfile existingProfile = registerNewUserRepository.findById(id).orElse(null);
         if (existingProfile != null) {
-            // Update the existing profile with the new data
+            // Update only the fields provided
             existingProfile.setName(userProfile.getName());
             existingProfile.setEmail(userProfile.getEmail());
             existingProfile.setSurname(userProfile.getSurname());
             existingProfile.setAtesi(userProfile.getAtesi());
-            existingProfile.setPassword(pwdEncoder.encode(userProfile.getPassword()));
             existingProfile.setPhonenumber(userProfile.getPhonenumber());
-            // Update other fields as needed
-            // Save the updated profile
+
+            // Update password only if it's provided, otherwise keep existing password
+            if (userProfile.getPassword() != null) {
+                existingProfile.setPassword(pwdEncoder.encode(userProfile.getPassword()));
+            }
+
             return registerNewUserRepository.save(existingProfile);
         } else {
             return null; // Or throw an exception indicating the user profile was not found
         }
     }
+
     public void deleteUser(Long id) {
         if (registerNewUserRepository.existsById(id)) {
             registerNewUserRepository.deleteById(id);
