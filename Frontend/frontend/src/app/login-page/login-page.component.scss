@@ -1,0 +1,78 @@
+/* Për sfondin dhe pozicionimin e përgjithshëm të faqes */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Mbush të gjithë lartësinë e ekranit */
+    text-align: center; /* Qendro tekstin në qendër */
+    padding: 0 20px; /* Hapësirë anash për mobile */
+}
+
+/* Për titullin Inova&&Tech */
+h1 {
+    font-size: 70px; /* Madhësia e tekstit */
+    font-weight: bold; /* Tekst i trashë */
+    text-align: center; /* Qendro titullin */
+    color: yellow; /* Ngjyra e tekstit */
+    margin-bottom: 20px; /* Hapësirë nën titull */
+    font-family: 'Lucida Calligraphy', cursive; /* Tipi i shkrimit Lucida Calligraphy */
+}
+
+/* Për kutinë e login-it */
+.login-card {
+    background-color: rgba(255, 255, 255, 0.8); /* Ngjyrë sfondi me transparencë */
+    border-radius: 10px; /* Cepa të rrumbullakosur */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hijë për efekt */
+    max-width: 500px; /* Gjerësi maksimale e kutisë */
+    width: 100%; /* Përshtatje në ekran më të vogël */
+    padding: 20px 30px;
+}
+
+/* Për sfondin e faqes */
+.background {
+    background-image: url('/assets/image/download.jpg'); /* Zëvendëso 'your-background-image.jpg' me emrin e imazhit tuaj */
+    background-size: cover; /* Mbulo të gjithë faqen */
+    background-position: center;
+    height: 100vh; /* Merr të gjithë lartësinë e ekranit */
+    display: flex;
+    justify-content: center; /* Qendro horizontalisht */
+    align-items: center; /* Qendro vertikalisht */
+}
+
+/* Përshtatja e inputeve për të pasur një hapësirë të vogël ndërmjet tyre dhe për t'u bërë bold */
+.mat-form-field {
+    width: 100%; /* Bëj gjerësinë e inputeve 100% */
+    font-weight: bold; /* Bëj tekstin brenda inputeve bold */
+    margin-bottom: 15px; /* Hapësirë mes inputeve */
+}
+
+/* Për titullin Login */
+mat-card-title {
+    font-weight: bold; /* Bëj titullin bold */
+    margin-bottom: 20px; /* Shto distancë nën titull */
+}
+
+/* Për butonin Login */
+.login-button {
+    width: 100%; /* Mbulo të gjithë gjerësinë */
+    margin-top: 20px;
+    background-color: #6a0dad; /* Ngjyra lejla për butonin */
+    color: yellow; /* Ngjyra e tekstit e bardhë */
+    border: none; /* Hiq kufirin */
+    padding: 10px 15px; /* Shtoi pak hapësirë të brendshme */
+    border-radius: 5px; /* Cepa të rrumbullakosur */
+    font-size: 16px; /* Madhësia e tekstit */
+    font-weight: bold; /* Tekst i trashë */
+    cursor: pointer; /* Ndrysho kursorin kur vendoset miu mbi butonin */
+    transition: background-color 0.3s ease; /* Efekt kalimi për hover */
+  }
+  
+  /* Efekti kur butoni është i çaktivizuar */
+  .login-button:disabled {
+    background-color: red; /* Ngjyra e kuqe kur butoni është disabled */
+    color: #ffffff; /* Teksti i bardhë */
+    cursor: not-allowed; /* Tregon që butoni nuk është i klikueshëm */
+    opacity: 0.6; /* Efekt transparence për të treguar që është i çaktivizuar */
+  }
+  

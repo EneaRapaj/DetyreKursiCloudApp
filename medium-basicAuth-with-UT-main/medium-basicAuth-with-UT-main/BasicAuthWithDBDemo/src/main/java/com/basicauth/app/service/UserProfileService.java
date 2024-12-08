@@ -32,6 +32,7 @@ public class UserProfileService {
             existingProfile.setSurname(userProfile.getSurname());
             existingProfile.setAtesi(userProfile.getAtesi());
             existingProfile.setPhonenumber(userProfile.getPhonenumber());
+            existingProfile.setDateOfBirth(userProfile.getDateOfBirth());
 
             // Update password only if it's provided, otherwise keep existing password
             if (userProfile.getPassword() != null) {

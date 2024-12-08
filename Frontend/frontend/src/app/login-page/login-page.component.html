@@ -1,5 +1,8 @@
-
+<div class="background"> <!-- Sfondi i faqes -->
   <div class="login-container">
+    <!-- Titulli Inova&&Tech -->
+    <h1>Inova&&Tech</h1>
+
     <mat-card class="login-card">
       <mat-card-title>Login</mat-card-title>
       <mat-card-content>
@@ -19,7 +22,7 @@
               Please enter a valid email.
             </mat-error>
           </mat-form-field>
-  
+
           <!-- Password Field -->
           <mat-form-field appearance="fill" class="form-field">
             <mat-label>Password</mat-label>
@@ -36,12 +39,12 @@
               Password must be at least 8 characters long.
             </mat-error>
           </mat-form-field>
-  
+
           <!-- Error Message -->
           <div *ngIf="errorMessage" class="error-message">
             {{ errorMessage }}
           </div>
-  
+
           <!-- Submit Button -->
           <button
             mat-raised-button
@@ -57,4 +60,4 @@
       <p>Don't have an account? <a routerLink="/register">Register here</a></p>
     </mat-card>
   </div>
-  
+</div>

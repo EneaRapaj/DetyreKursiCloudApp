@@ -1,15 +1,83 @@
-.profile-card {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 17px;
-  }
-  
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 16px;
-  }
-  
-  button {
-    margin-right: 8px;
-  }
-  
+/* Stili i header-it */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #0b0778;
+  border-bottom: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+}
+
+.header .left {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.header .center {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header .right button {
+  cursor: pointer;
+}
+
+/* Struktura e faqes */
+.container {
+  display: flex;
+  height: calc(100vh - 60px); /* Përjashton lartësinë e header-it */
+  overflow: hidden;
+}
+
+/* Paneli i majtë */
+.left-panel {
+  flex: 1;
+  background-image: url('/assets/image/njeriu.jpg'); /* Vendos imazhin si sfond */
+  background-size: cover; /* Përshkallëzo për të mbuluar hapësirën */
+  background-position: center; /* Qendroje imazhin */
+  background-repeat: no-repeat; /* Mos përsërit imazhin */
+  height: 100%;
+}
+
+/* Opsionale për të ruajtur strukturën e faqes */
+.container {
+  display: flex;
+  height: calc(100vh - 70px); /* Lartësia relative me header-in */
+}
+
+
+/* Paneli i djathtë */
+.right-panel {
+  flex: 1;
+  background-color: #222;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 800px;
+  background: #fff;
+  color: #000;
+}
+
+mat-card-title {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+ 
+}

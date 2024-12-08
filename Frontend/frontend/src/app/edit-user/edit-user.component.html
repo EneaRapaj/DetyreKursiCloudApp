@@ -1,63 +1,72 @@
-<p>edit-user works!</p>
+<div class="page-container">
+  <div class="logo">
+    Inova<span>&&</span>Tech
+  </div>
+  <div class="form-container">
+    <h2>Edit User</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="editForm.get('name')?.invalid">
+          Name is required and must contain only letters with max 20 characters.
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Atesi</mat-label>
+        <input matInput formControlName="atesi" />
+        <mat-error *ngIf="editForm.get('atesi')?.invalid">
+          Atesi is required and must contain only letters with max 20 characters.
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="surname" />
+        <mat-error *ngIf="editForm.get('surname')?.invalid">
+          Surname is required and must contain only letters with max 20 characters.
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" readonly />
+        <mat-error *ngIf="editForm.get('email')?.invalid">
+          Valid email is required.
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phonenumber" />
+        <mat-error *ngIf="editForm.get('phonenumber')?.invalid">
+          Phone number must start with +355 and have 9 digits.
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput formControlName="dateOfBirth" type="date" />
+        <mat-error *ngIf="editForm.get('dateOfBirth')?.invalid">
+          Date of Birth is required.
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error *ngIf="editForm.get('password')?.invalid">
+          Password must have at least 8 characters, 1 uppercase, 1 lowercase, 1 number, and 1 special character.
+        </mat-error>
+      </mat-form-field>
+    
+      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
+    </form>
+    
+  </div>
+</div>
 
-<h2>Edit User</h2>
-<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name" />
-    <mat-error *ngIf="editForm.get('name')?.invalid">
-      Name is required and must contain only letters with max 20 characters.
-    </mat-error>
-  </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Atesi</mat-label>
-    <input matInput formControlName="atesi" />
-    <mat-error *ngIf="editForm.get('atesi')?.invalid">
-      Atesi is required and must contain only letters with max 20 characters.
-    </mat-error>
-  </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Surname</mat-label>
-    <input matInput formControlName="surname" />
-    <mat-error *ngIf="editForm.get('surname')?.invalid">
-      Surname is required and must contain only letters with max 20 characters.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Email</mat-label>
-    <input matInput formControlName="email" readonly />
-    <mat-error *ngIf="editForm.get('email')?.invalid">
-      Valid email is required.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Phone Number</mat-label>
-    <input matInput formControlName="phonenumber" />
-    <mat-error *ngIf="editForm.get('phonenumber')?.invalid">
-      Phone number must start with +355 and have 9 digits.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Date of Birth</mat-label>
-    <input matInput formControlName="dateOfBirth" type="date" />
-    <mat-error *ngIf="editForm.get('dateOfBirth')?.invalid">
-      Date of Birth is required.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Password</mat-label>
-    <input matInput type="password" formControlName="password" />
-    <mat-error *ngIf="editForm.get('password')?.invalid">
-      Password must have at least 8 characters, 1 uppercase, 1 lowercase, 1 number, and 1 special character.
-    </mat-error>
-  </mat-form-field>
-
-  <button mat-raised-button color="primary" type="submit">Save</button>
-  <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
-</form>
